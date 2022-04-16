@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- style -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Encriptador</title>
+  </head>
+  <body>
+    <main class="main-container">
+      <!-- header -->
+      <header class="header-container">
+        <img class="logo" src="./assets/icons/Logo.svg" alt="Logo" />
+      </header>
+
+      <!-- content sections -->
+
+      <section class="content-container field">
+        <form id="form">
+          <textarea
+            name="fieldText"
+            id="fieldText"
+            placeholder="Ingrese el texto aqui"
+            cols="30"
+            rows="10"
+          ></textarea>
+          <div class="text-alert-container">
+            <div class="text-alert-container">
+              <span><img src="./assets/icons/alert.svg" alt="alert" /></span>
+              <p>Solo letras minúsculas y sin acentos</p>
+            </div>
+          </div>
+          <div class="btn-container">
+            <button id="btn-encrypt" class="btn">Encriptar</button>
+            <button id="btn-descrypt" class="btn">Desencriptar</button>
+          </div>
+        </form>
+      </section>
+      <!-- content encrypt and descrypt  -->
+      <section class="content-container text-container">
+        <article class="text-encrypt-descrypt-container">
+          <div class="text-encrypt-descrypt">
+            <div class="img-container">
+              <img src="./assets/icons/ilustract.svg" alt="ilustration" />
+            </div>
+            <div class="text-content">
+              <h2>Ningún mensaje fue encontrado</h2>
+              <p>Ingresa el texto que desees encriptar o desencriptar.</p>
+            </div>
+          </div>
+
+          <button id="btn-copy" class="btn">Copiar</button>
+        </article>
+      </section>
+    </main>
+
+    <script src="./assets/js/app.js" type="module"></script>
+  </body>
+</html>
