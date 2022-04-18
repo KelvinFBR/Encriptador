@@ -34,8 +34,21 @@ const createAlert = (typeAlert, text) => {
 const fieldValidation = () => {
   const regexText = /[a-z]/;
   const data = new FormData(form);
-  if (!regexText.test(data.get("fieldText")) || !data.get("fieldText").trim()) {
+  //   if (!regexText.test(data.get("fieldText")) || !data.get("fieldText").trim()) {
+  //     createAlert("active-incorrect", "Solo letras minúsculas y sin acentos");
+  //     throw TypeError("El campo esta vacio o contiene letras mayusculas");
+  //   }
+
+  console.log(data.get("fieldText").trim().length);
+  if (
+    !regexText.test(data.get("fieldText")) &&
+    data.get("fieldText").trim().length !== 0
+  ) {
     createAlert("active-incorrect", "Solo letras minúsculas y sin acentos");
+    throw TypeError("El campo esta vacio o contiene letras mayusculas");
+  }
+  if (!data.get("fieldText").trim()) {
+    createAlert("active-incorrect", "Ingrese un texto");
     throw TypeError("El campo esta vacio o contiene letras mayusculas");
   }
 };
