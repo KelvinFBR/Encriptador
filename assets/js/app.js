@@ -2,24 +2,41 @@ import * as encriptador from "./encriptador.js";
 import * as desencriptador from "./desencriptador.js";
 
 // const fieldText = document.getElementById("fieldText");
-const btnEncrypt = document.getElementById("btn-encrypt"),
-  btnDescrypt = document.getElementById("btn-descrypt"),
-  btnCopy = document.getElementById("btn-copy"),
-  form = document.getElementById("form");
+const btnCopy = document.getElementById("btn-copy"),
+  form = document.getElementById("form"),
+  alertContainer = document.querySelector(".alert");
+
 const textContainer = document.querySelector(".text-encrypt-descrypt");
 const asideContent = document.querySelector(".text-encrypt-descrypt-container");
 let textEncrypted, textDescrypt;
-// console.log({ fieldText, form, btnEncrypt });
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
+
+const createParagraph = (text) => {
+  textContainer.textContent = "";
+  let paragraph = document.createElement("p");
+  paragraph.textContent = text;
+  textContainer.appendChild(paragraph);
+};
+const createAlert = (typeAlert, text) => {
+  alertContainer.textContent = "";
+  let paragraph = document.createElement("p");
+  paragraph.textContent = text;
+  alertContainer.appendChild(paragraph);
+  alertContainer.classList.add(typeAlert);
+  setTimeout(() => {
+    alertContainer.classList.remove(typeAlert);
+  }, 1800);
+};
+
 const fieldValidation = () => {
   const regexText = /[a-z]/;
   const data = new FormData(form);
   if (!regexText.test(data.get("fieldText")) || !data.get("fieldText").trim()) {
+    createAlert("active-incorrect", "Solo letras minúsculas y sin acentos");
     throw TypeError("El campo esta vacio o contiene letras mayusculas");
-    // alerta de datos no correctos
   }
 };
 
@@ -33,13 +50,11 @@ document.addEventListener("click", (e) => {
     asideContent.classList.add("active");
 
     //   proyectando datos en pantalla
-    textContainer.textContent = "";
-    let parrafo = document.createElement("p");
-    parrafo.textContent = textEncrypted;
-    textContainer.appendChild(parrafo);
+    createParagraph(textEncrypted);
     textDescrypt = "";
 
-    // alerta ya fue codificado
+    // alerta codificar
+    createAlert("active-correct", "Texto Encriptado");
   }
 
   if (e.target.matches("#btn-descrypt")) {
@@ -53,22 +68,20 @@ document.addEventListener("click", (e) => {
       asideContent.classList.add("active");
 
       //   proyectando datos en pantalla
-      textContainer.textContent = "";
-      let parrafo = document.createElement("p");
-      parrafo.textContent = textDescrypt;
-      textContainer.appendChild(parrafo);
+      createParagraph(textDescrypt);
       textEncrypted = "";
-    } else {
-      // alerta ya fue decodificado
+
+      //   alerta decodificacion
+      createAlert("active-correct", "Texto Desencriptado");
     }
   }
 
   if (e.target.matches("#btn-copy")) {
-    console.log({ textEncrypted, textDescrypt });
     navigator.clipboard
       .writeText(textEncrypted || textDescrypt)
       .then(() => {
-        console.log("texto copiado");
+        //   alerta copy
+        createAlert("active-correct", "Texto copiado");
       })
       .catch((e) => console.log(e));
   }

@@ -13,7 +13,7 @@
   --line-height: 1.8rem;
 
   /* font family */
-  --font-family: "Inter", sans-serifs;
+  --font-family: "Inter", arial;
 }
 
 * {
@@ -35,7 +35,6 @@ html {
 }
 
 /* content */
-
 .main-container {
   position: relative;
   width: 100%;
@@ -86,6 +85,33 @@ textarea {
   color: var(--secondary-text-color);
   line-height: var(--line-height);
   font-weight: 400;
+}
+
+/* alerts */
+.alert {
+  position: fixed;
+  top: 80px;
+  right: 0;
+  height: 50px;
+  padding: 2rem;
+  background-color: var(--primary-color);
+  color: var(--color-light-blue);
+  font-size: var(--font-normal);
+  display: grid;
+  place-content: center;
+  border-radius: 10px 0 0 10px;
+  transform: translateX(400px);
+  transition: all 0.8s ease;
+}
+
+.alert.active-correct {
+  transform: translateX(0);
+  border-left: 10px solid #3cff7d;
+}
+
+.alert.active-incorrect {
+  transform: translateX(0);
+  border-left: 10px solid #ff3c46;
 }
 
 /* buttons */
