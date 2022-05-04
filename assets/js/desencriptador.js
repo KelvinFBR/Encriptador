@@ -1,18 +1,12 @@
-import * as encriptador from "./encriptador.js";
-
 const words = ["ai", "enter", "imes", "ober", "ufat"];
-let newLetter,
-  textArray,
-  textDescrypt = "";
-let flag = true;
+let newLetter, textDescrypt;
+
 // cambia cada uno de las  letras a encrytar
 const changeText = (textEncrypted, word, newLetter) => {
   const regex = new RegExp(word, "gm");
 
-  if (textEncrypted.includes(word) && flag) {
-    textDescrypt = textEncrypted.replace(regex, newLetter);
-    flag = false;
-  } else if (textDescrypt.includes(word)) {
+  // validar si el texto desencriptado contiene partes ya desencriptadas o estas vacio
+  if (textDescrypt?.includes(word) || !textDescrypt) {
     textDescrypt = textEncrypted.replace(regex, newLetter);
     descrypt(textDescrypt);
   }
@@ -49,4 +43,9 @@ const descrypt = (text) => {
   return textDescrypt;
 };
 
-export { descrypt };
+// reinicia el textDescrypt  al recibir(retornar) los datos
+const clearField = () => {
+  textDescrypt = "";
+};
+
+export { descrypt, clearField };
